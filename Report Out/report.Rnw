@@ -1,0 +1,148 @@
+\documentclass{article}
+\usepackage{amsmath} %This allows me to use the align functionality.
+                     %If you find yourself trying to replicate
+                     %something you found online, ensure you're
+                     %loading the necessary packages!
+\usepackage{amsfonts}%Math font
+\usepackage{graphicx}%For including graphics
+\usepackage{hyperref}%For Hyperlinks
+\usepackage{hyperref}
+\hypersetup{colorlinks = true,citecolor=black}
+\usepackage{natbib}        %For the bibliography
+\bibliographystyle{apalike}%For the bibliography
+\usepackage[margin=0.50in]{geometry}
+\usepackage{float}
+\usepackage{multicol}
+
+%fix for figures
+\usepackage{caption}
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+\begin{document}
+
+\vspace{-1in}
+\title{TITLE UPDATE LATER}
+
+\author{
+  Aziz Zafar, Chris Cherniakov, Div Chamria, Fairuz Ishraque, Giancarlo Arcese, Hieu Do \\
+  Colgate University  \\
+  Data Science  
+}
+
+\date{}
+
+\maketitle
+
+\begin{multicols}{2}
+\begin{abstract}
+This document provides a basic template for the 2-page extended abstract and some submission guidelines.
+\end{abstract}
+
+{\bf Keywords:} Minnesota, Criminal Sentencing Bias, Mixed-Effect Modelling
+
+%%% R code for in-paper reference
+<<loaddata,echo=FALSE,warning=FALSE,message=FALSE,error=FALSE,results='hide'>>=
+# Code to load data won't show here, but
+# we can call it in the appendix
+@
+<<plot1,echo=FALSE,warning=FALSE,message=FALSE,error=FALSE,results='hide'>>=
+pdf("plot.pdf",width=5, height=3)  #save ggplot to a pdf
+# Code to create plot won't show here, but
+# we can call the plot from the figure environment
+# or in the appendix to show the code there.
+library(tidyverse)
+dat <- data.frame(x=seq(0,1,length.out=100))%>%
+  mutate(y=x)
+ggplot(data=dat, aes(x=x,y=y))+
+  geom_line()
+dev.off()
+@
+
+%%% Write up!
+\section{Introduction}
+\subsection{Template}
+This template is based on the SDSS conference template, which
+is based the template for the annual conference of the Association 
+for Computational Linguistics (ACL), whose template includes the following paragraph of credits:
+\begin{quotation}
+\small % Okay to use \small inside quotation environment ONLY
+This document has been adapted from the instructions for earlier ACL
+proceedings, including those for ACL-2012 by Maggie Li and Michael
+White, those from ACL-2010 by Jing-Shing Chang and Philipp Koehn,
+those for ACL-2008 by Johanna D. Moore, Simone Teufel, James Allan,
+and Sadaoki Furui, those for ACL-2005 by Hwee Tou Ng and Kemal
+Oflazer, those for ACL-2002 by Eugene Charniak and Dekang Lin, and
+earlier ACL and EACL formats. Those versions were written by several
+people, including John Chen, Henry S. Thompson and Donald
+Walker. Additional elements were taken from the formatting
+instructions of the {\em International Joint Conference on Artificial
+  Intelligence}.
+\end{quotation}  
+The goal of this two-page template is to emphasize extracting what's
+essential.
+
+You submission \emph{must} be two-pages long, with the option of a 1 page appendix
+showing your most important code chunks. Alternatively, you may decide to provide a
+link to your github repo!
+
+\subsection{Citations}
+Blurbs about our two sources \citep{Cipolli} and \citep{lundgren}.
+\par
+In addition to using the \texttt{R} language developed by \cite{R}, we used the following \texttt{R} packages to help conduct our data analysis: Tidyverse \citep{Tidyverse},
+GGally \citep{GGally}, ez \citep{ez}, lme4 \citep{lme4}, patchwork \citep{patchwork}. 
+\par
+
+\subsection{Graphics and Tables}
+Place figures and tables in the paper near where they are first discussed,rather than at the end. 
+
+\begin{Figure}
+\begin{center}
+\includegraphics[width=\linewidth]{plot.pdf} %call created figure
+\captionof{figure}{An example plot using the data.}
+\label{bayespic}
+\end{center}
+\end{Figure}
+
+\section{Methods}
+ou want to provide some essential information about what you're addressing
+and where the data came from.
+
+\section{Data/Results}
+\subsection{Models}
+Discussion about the tools you used to do the analyses.
+
+\subsubsection{Topic 1}
+Subsections are helpful if you're exploring one or more dependent variable.
+
+\subsubsection{Topic 2}
+Subsections are helpful if you're exploring one or more dependent variable.
+
+\subsubsection{Topic 3}
+Subsections are helpful if you're exploring one or more dependent variable.
+
+
+\section{Discussion/Conclusions}
+Discuss the results of your analyses here. This is where you tie all
+of your work together into a nice, succinct summary.
+
+
+\bibliography{bib.bib}
+\end{multicols}
+\newpage
+\onecolumn
+\section{Appendix}
+\begin{scriptsize}
+Below are examples of how to incorporate your code.\\\vspace{1em}
+
+Loaded Data.
+<<eval=FALSE>>=
+<<loaddata>>
+@
+Plot
+<<eval=FALSE>>=
+<<plot1>>
+@
+
+\end{scriptsize}
+\end{document}
